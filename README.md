@@ -17,6 +17,7 @@ https://github.com/open-dingtalk/enterprises_third_callback-demo.git
 * [SyncHTTP推送概述](https://developers.dingtalk.com/document/app/configure-synchttp-push)
 * [RDS推送概述](https://developers.dingtalk.com/document/app/rds-push-overview-3)
 * [推送数据格式](https://developers.dingtalk.com/document/app/data-format)
+* [内网穿透](https://developers.dingtalk.com/document/resourcedownload/http-intranet-penetration?pnamespace=app)
 
 ### Guides
 
