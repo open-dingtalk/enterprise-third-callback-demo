@@ -11,6 +11,8 @@ public class AppConfig {
 
     private String corpId;
 
+    private String suiteId;
+
     private String suiteKey;
 
     private String suiteSecret;

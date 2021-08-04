@@ -42,14 +42,21 @@ public class HandlerServiceImpl implements HandlerService {
             Iterator<Object> iterator = bizData.iterator();
             while (iterator.hasNext()) {
                 JSONObject jsonObject = (JSONObject) iterator.next();
-                JSONObject biz_data = jsonObject.getJSONObject("biz_data");
-                eventType = biz_data.getString("syncAction");
-                eventHandlerFactoryProducer.getEventHandlerFactory(eventType).getEventHandler(eventType).handler(jsonObject);
+                handlerBizData(jsonObject.getJSONObject("biz_data"));
             }
         }
 
 
         log.info("业务逻辑处理完毕");
 
+    }
+
+    /**
+     * rds推送可以直接调用此方法
+     * @param bizData
+     */
+    public void handlerBizData(JSONObject bizData) {
+        String eventType = bizData.getString("syncAction");
+        eventHandlerFactoryProducer.getEventHandlerFactory(eventType).getEventHandler(eventType).handler(bizData);
     }
 }

@@ -7,4 +7,6 @@ import java.util.Map;
 public interface HandlerService {
 
     void handler(JSONObject eventJson);
+
+    void handlerBizData(JSONObject bizData);
 }

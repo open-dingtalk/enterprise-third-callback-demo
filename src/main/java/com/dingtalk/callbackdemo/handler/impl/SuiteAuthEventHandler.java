@@ -26,16 +26,16 @@ public class SuiteAuthEventHandler implements EventHandler {
     /**
      * 授权回调
      *
-     * @param eventJson
+     * @param bizData
      */
     @Override
-    public void handler(JSONObject eventJson) {
+    public void handler(JSONObject bizData) {
 
         String suiteAccessToken = AccessTokenUtil.getSuiteAccessToken(appConfig.getSuiteKey(), appConfig.getSuiteSecret());
 
-        JSONObject bizData = eventJson.getJSONObject("biz_data");
         String permanentCode = bizData.getString("permanent_code");
-        String corpId = eventJson.getString("corp_id");
+        JSONObject authCorpInfo = bizData.getJSONObject("auth_corp_info");
+        String corpId = authCorpInfo.getString("corpid");
         activateSuite(permanentCode, corpId, suiteAccessToken);
 
     }
