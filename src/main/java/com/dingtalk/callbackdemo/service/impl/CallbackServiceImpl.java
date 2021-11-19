@@ -1,7 +1,6 @@
 package com.dingtalk.callbackdemo.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.aliyun.dingtalk.util.DingCallbackCrypto;
 import com.dingtalk.callbackdemo.config.AppConfig;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
 import java.util.Map;
 
 @Slf4j
@@ -26,7 +24,7 @@ public class CallbackServiceImpl implements CallbackService {
     private AppConfig appConfig;
 
     @Autowired
-    private ThreadPoolTaskExecutor executor;
+    private ThreadPoolTaskExecutor taskExecutor;
 
     /**
      * 第三方企业 使用syncHttp推送，推送数据格式参考：https://developers.dingtalk.com/document/app/data-format
@@ -49,7 +47,7 @@ public class CallbackServiceImpl implements CallbackService {
             log.info("eventJson: {}", eventJson);
 
             // 3. 异步处理业务逻辑
-            executor.execute(() -> handlerService.handler(eventJson));
+            taskExecutor.execute(() -> handlerService.handler(eventJson));
 
 
             // 4. 返回success的加密数据
